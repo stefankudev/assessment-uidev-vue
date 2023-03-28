@@ -39,7 +39,6 @@ const selectedFloor = computed({
 #wrapper {
   display: flex;
   min-height: 30vh;
-  max-height: 90vh;
 }
 
 aside {
