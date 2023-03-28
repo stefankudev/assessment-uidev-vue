@@ -1,16 +1,16 @@
-import {defineStore} from 'pinia';
-import {ref, computed} from 'vue';
+import { defineStore } from 'pinia';
+import { ref, computed } from 'vue';
 
 export const useRecords = defineStore('records', () => {
   // todo: get this information from the server
   const capacity = ref(120)
   const floors = computed(() => {
     return [
-        "Penthouse",
-        "Floor 2",
-        "Floor 1",
-        "Ground",
-        "Basement"
+      "Penthouse",
+      "Floor 2",
+      "Floor 1",
+      "Ground",
+      "Basement"
     ]
   })
   const history = computed(() => {
@@ -19,18 +19,28 @@ export const useRecords = defineStore('records', () => {
     for (let i = 0; i < 200; i++) {
       for (let floor of floors.value) {
         out.push({
-          time: new Date(then.getTime() + (30*60*1000*i)),
+          time: new Date(then.getTime() + (30 * 60 * 1000 * i)),
           peopleCount: Math.round(Math.random() * capacity.value),
           floor
-        })
+        });
       }
     }
     return out;
-  })
+  });
+
+  const selectedFloor = ref(null);
+
+  const filteredHistory = computed(() => {
+    if (!selectedFloor.value) {
+      return history.value;
+    }
+    return history.value.filter(record => record.floor === selectedFloor.value);
+  });
 
   return {
     capacity,
     floors,
-    history
-  }
-})
+    history: filteredHistory,
+    selectedFloor
+  };
+});
