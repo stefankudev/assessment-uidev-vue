@@ -10,13 +10,6 @@ const headers = computed(() => {
     { text: 'Occupancy', value: 'peopleCount', align: 'right' }
   ];
 });
-
-const selectedFloor = computed({
-  get: () => records.selectedFloor,
-  set: value => {
-    records.selectedFloor = value;
-  }
-});
 </script>
 
 <template>
@@ -24,7 +17,7 @@ const selectedFloor = computed({
     <aside>
       <v-card class="card">
         <!-- Some props I might also use here are "multiple chips closable-chips clearable" but then I would also need to change the state to an array of values -->
-        <v-select v-model="selectedFloor" :items="records.floors" label="Select a floor" />
+        <v-select v-model="records.selectedFloor" :items="records.floors" label="Select a floor" />
       </v-card>
     </aside>
     <main>

@@ -30,6 +30,13 @@ export const useRecords = defineStore('records', () => {
 
   const selectedFloor = ref(null);
 
+  const selectedFloorActions = computed({
+    get: () => selectedFloor.value,
+    set: value => {
+      selectedFloor.value = value;
+    }
+  });
+
   const filteredHistory = computed(() => {
     if (!selectedFloor.value) {
       return history.value;
@@ -41,6 +48,6 @@ export const useRecords = defineStore('records', () => {
     capacity,
     floors,
     history: filteredHistory,
-    selectedFloor
+    selectedFloor: selectedFloorActions
   };
 });
