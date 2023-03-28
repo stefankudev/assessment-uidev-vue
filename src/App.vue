@@ -3,12 +3,9 @@
     <v-app-bar app color="primary">
       Vanti Front End Dev Assessment
     </v-app-bar>
-
     <v-main>
       <v-container>
-        <v-card>
-          <occupancy-table/>
-        </v-card>
+        <occupancy-table />
       </v-container>
     </v-main>
   </v-app>
