@@ -2,8 +2,11 @@ import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 
 export const useRecords = defineStore('records', () => {
-  // todo: get this information from the server
+  // TODO: Get this information from the server
+
   const capacity = ref(120)
+
+  // Floors
   const floors = computed(() => {
     return [
       "Penthouse",
@@ -13,6 +16,15 @@ export const useRecords = defineStore('records', () => {
       "Basement"
     ]
   })
+  const selectedFloor = ref(null);
+  const selectedFloorActions = computed({
+    get: () => selectedFloor.value,
+    set: value => {
+      selectedFloor.value = value;
+    }
+  });
+
+  // Records
   const history = computed(() => {
     const out = [];
     const then = new Date("2023-02-04T12:34:56");
@@ -28,14 +40,7 @@ export const useRecords = defineStore('records', () => {
     return out;
   });
 
-  const selectedFloor = ref(null);
 
-  const selectedFloorActions = computed({
-    get: () => selectedFloor.value,
-    set: value => {
-      selectedFloor.value = value;
-    }
-  });
 
   const filteredHistory = computed(() => {
     if (!selectedFloor.value) {
