@@ -1,5 +1,4 @@
 <script setup>
-import OccupancyTable from '@/occupancy/OccupancyTable.vue';
 </script>
 
 <template>
@@ -9,7 +8,7 @@ import OccupancyTable from '@/occupancy/OccupancyTable.vue';
     </v-app-bar>
     <v-main>
       <v-container>
-        <occupancy-table />
+        <router-view></router-view>
       </v-container>
     </v-main>
   </v-app>
