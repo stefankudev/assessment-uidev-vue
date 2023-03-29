@@ -16,11 +16,21 @@ const headers = computed(() => {
   <section id="wrapper">
     <aside>
       <v-card class="card">
-        <v-select v-model="records.selectedFloor" :items="records.floors" label="Select a floor" />
+        <v-toolbar-title class="title">Filter by floor</v-toolbar-title>
+        <v-divider></v-divider>
+        <v-list>
+          <v-list-item-group v-model="records.selectedFloor">
+            <v-list-item v-for="floor in records.floors" :key="floor" :value="floor">
+              <v-list-item-title>{{ floor }}</v-list-item-title>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
       </v-card>
     </aside>
     <main>
       <v-card class="card">
+        <v-toolbar-title class="title">Occupancy history</v-toolbar-title>
+        <v-divider></v-divider>
         <v-data-table :items="records.history" :headers="headers" />
       </v-card>
     </main>
@@ -44,7 +54,12 @@ main {
 }
 
 .card {
-  padding: 1rem;
+  padding: 1.5rem;
   height: 100%;
+
+  .title {
+    font-size: 2rem;
+    padding-bottom: 0.75rem;
+  }
 }
 </style>
