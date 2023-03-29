@@ -16,7 +16,6 @@ const headers = computed(() => {
   <section id="wrapper">
     <aside>
       <v-card class="card">
-        <!-- Some props I might also use here are "multiple chips closable-chips clearable" but then I would also need to change the state to an array of values -->
         <v-select v-model="records.selectedFloor" :items="records.floors" label="Select a floor" />
       </v-card>
     </aside>
