@@ -22,7 +22,7 @@ export const useRecords = defineStore('records', () => {
     get: () => selectedFloor.value,
     set: value => {
       selectedFloor.value = value;
-      router.push(`/${value}`)
+      router.push(`/${value || ''}`)
     }
   });
 
