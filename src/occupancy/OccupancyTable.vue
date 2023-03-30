@@ -1,6 +1,7 @@
 <script setup>
 import { useRecords } from '@/occupancy/records';
 import { computed } from 'vue';
+import router from '../router'
 
 const records = useRecords();
 const headers = computed(() => {
@@ -10,6 +11,8 @@ const headers = computed(() => {
     { text: 'Occupancy', value: 'peopleCount', align: 'right' }
   ];
 });
+
+records.selectedFloor = router?.currentRoute?.params?.floorName;
 </script>
 
 <template>

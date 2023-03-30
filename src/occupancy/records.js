@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
+import router from '../router'
 
 export const useRecords = defineStore('records', () => {
   // TODO: Get this information from the server
@@ -21,6 +22,7 @@ export const useRecords = defineStore('records', () => {
     get: () => selectedFloor.value,
     set: value => {
       selectedFloor.value = value;
+      router.push(`/${value}`)
     }
   });
 
