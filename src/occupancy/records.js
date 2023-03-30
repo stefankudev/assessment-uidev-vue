@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
+import router from '../router'
 
 export const useRecords = defineStore('records', () => {
   // TODO: Get this information from the server
@@ -21,11 +22,12 @@ export const useRecords = defineStore('records', () => {
     get: () => selectedFloor.value,
     set: value => {
       selectedFloor.value = value;
+      router.push(`/${value || ''}`)
     }
   });
 
   // Records
-  const history = computed(() => {
+  const occupancyRecords = computed(() => {
     const out = [];
     const then = new Date("2023-02-04T12:34:56");
     for (let i = 0; i < 200; i++) {
@@ -42,17 +44,17 @@ export const useRecords = defineStore('records', () => {
 
 
 
-  const filteredHistory = computed(() => {
+  const filteredOccupancyRecords = computed(() => {
     if (!selectedFloor.value) {
-      return history.value;
+      return occupancyRecords.value;
     }
-    return history.value.filter(record => record.floor === selectedFloor.value);
+    return occupancyRecords.value.filter(record => record.floor === selectedFloor.value);
   });
 
   return {
     capacity,
     floors,
-    history: filteredHistory,
+    occupancyRecords: filteredOccupancyRecords,
     selectedFloor: selectedFloorActions
   };
 });

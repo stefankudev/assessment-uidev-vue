@@ -24,9 +24,9 @@ describe('records', () => {
         ]);
     });
 
-    it('should generate history data with the correct format', () => {
-        const { history } = useRecords();
-        expect(history[0]).toMatchObject({
+    it('should generate occupancy records data with the correct format', () => {
+        const { occupancyRecords } = useRecords();
+        expect(occupancyRecords[0]).toMatchObject({
             time: expect.any(Date),
             peopleCount: expect.any(Number),
             floor: expect.any(String)

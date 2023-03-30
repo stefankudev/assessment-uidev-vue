@@ -1,6 +1,7 @@
 <script setup>
 import { useRecords } from '@/occupancy/records';
 import { computed } from 'vue';
+import router from '../router'
 
 const records = useRecords();
 const headers = computed(() => {
@@ -10,6 +11,8 @@ const headers = computed(() => {
     { text: 'Occupancy', value: 'peopleCount', align: 'right' }
   ];
 });
+
+records.selectedFloor = router?.currentRoute?.params?.floorName;
 </script>
 
 <template>
@@ -29,9 +32,9 @@ const headers = computed(() => {
     </aside>
     <main>
       <v-card class="card">
-        <v-toolbar-title class="title">Occupancy history</v-toolbar-title>
+        <v-toolbar-title class="title">Occupancy records</v-toolbar-title>
         <v-divider></v-divider>
-        <v-data-table :items="records.history" :headers="headers" />
+        <v-data-table :items="records.occupancyRecords" :headers="headers" />
       </v-card>
     </main>
   </section>
